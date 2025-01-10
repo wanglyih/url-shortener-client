@@ -36,9 +36,8 @@ namespace URLShortener_client
         {           
             var guid = this.generator.Next(null);
             var id = guid.ToString().Replace("-", "");
-            var url = $"https://google.com//search?q={id}";
-
-            return url;
+            
+            return id;
         } 
     }
 }

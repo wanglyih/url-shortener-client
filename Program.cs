@@ -51,9 +51,9 @@ namespace URLShortener_client
 
         private static async Task ProcessRequest(IHost host)
         {
-            var baseSampleUrl = new Uri(Configuration["SampleUrl"]);
+            var baseSampleUrl = Configuration["SampleUrl"];
             var sequentialGuid = SequentialGuid.Instance.Get();
-            var sequentialUrl = new Uri(baseSampleUrl, sequentialGuid).AbsoluteUri;
+            var sequentialUrl = baseSampleUrl + sequentialGuid;
             var clientArg = HttpUtility.UrlEncode(sequentialUrl);
 
             var apiClient = host.Services.GetRequiredService<IApiClient>();
