@@ -14,6 +14,10 @@ namespace URLShortener_client
 
         private static async Task Main(string[] args)
         {
+
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+
             Configuration = new ConfigurationBuilder()
               .SetBasePath(AppContext.BaseDirectory)
               .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -45,6 +49,10 @@ namespace URLShortener_client
             }
 
             await Task.WhenAll(tasks);
+
+
+            watch.Stop();
+            Console.WriteLine($"Total requests: {iterations}. Execution Time: {watch.ElapsedMilliseconds} ms");
 
             await host.WaitForShutdownAsync();
         }
